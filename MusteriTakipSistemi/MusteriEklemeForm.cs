@@ -1,4 +1,5 @@
-﻿using MusteriTakipSistemi.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using MusteriTakipSistemi.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +16,16 @@ namespace MusteriTakipSistemi
     public partial class MusteriEklemeForm : Form
     {
         MusteriContext db = new MusteriContext();
-        List<Musteri> yeniMusteriler = new List<Musteri>();
+        List<Musteri> eklenenler = new List<Musteri>();
+        bool closeButtonClicked = false; // listeye eklenen müşteriler kaydet ve çık butonuna basarsa müsteriler db'ye aktarılacak.
+        Musteri yeniMusteri;
+
         public MusteriEklemeForm()
         {
             InitializeComponent();
             SehirleriListele();
             UrunleriListele();
+
         }
 
         private void UrunleriListele()
@@ -41,20 +46,22 @@ namespace MusteriTakipSistemi
             Sehir sehir = (Sehir)cboSehirler.SelectedItem;
             DateTime tarih = dtpTarih.Value;
 
-            Musteri yeniMusteri = new Musteri() { Ad = ad, Soyad = soyad, Telefon = tel, Sehir = sehir, SatinAlmaTarihi = tarih };
+            yeniMusteri = new Musteri() { Ad = ad, Soyad = soyad, Telefon = tel, Sehir = sehir, SatinAlmaTarihi = tarih };
 
-
-            // yeni bir müşteri dizisi oluşturduk. eğer kaydet ve çık tuşuna basılırsa bu listeyi komple db ye aktaracağız.
-            yeniMusteriler.Add(yeniMusteri);
-
+            db.Musteriler.Add(yeniMusteri);
+            db.SaveChanges();
             MessageBox.Show("Müşteri başarıyla eklenmiştir.");
-            cboMusteriler.DataSource = yeniMusteriler.ToList();
+
+
+            eklenenler.Add(yeniMusteri);
+            cboMusteriler.DataSource = eklenenler.ToList();
 
         }
 
         private void MusterileriListele()
         {
-            dgvMusteriler.DataSource = yeniMusteriler.ToList();
+
+            dgvMusteriler.DataSource = new List<Musteri> { yeniMusteri };
         }
 
         private void btnSil_Click(object sender, EventArgs e)
@@ -63,9 +70,12 @@ namespace MusteriTakipSistemi
                 return;
 
             Musteri secili = (Musteri)dgvMusteriler.SelectedRows[0].DataBoundItem;
-            yeniMusteriler.Remove(secili);
+            db.Musteriler.Remove(secili);
+
             MessageBox.Show("Müşteri başarıyla silinmiştir.");
-            MusterileriListele();
+            eklenenler.Remove(secili);
+            dgvMusteriler.DataSource = new List<Musteri> { yeniMusteri };
+
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
@@ -81,35 +91,45 @@ namespace MusteriTakipSistemi
             guncellenecek.SatinAlmaTarihi = dtpTarih.Value;
             guncellenecek.Sehir = (Sehir)cboSehirler.SelectedItem;
 
+
             MusterileriListele();
 
-        }
-
-        private void btnKaydetVeCik_Click(object sender, EventArgs e)
-        {
-            db.Musteriler.AddRange(yeniMusteriler);
-            db.SaveChanges();
-            // form kapansın
         }
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
+
             Musteri musteri = (Musteri)cboMusteriler.SelectedItem;
             Urun urun = (Urun)cboUrunler.SelectedItem;
 
             musteri.Urunler.Add(urun);
-            MusterileriListele();
+            db.SaveChanges();
+            dgvMusteriler.DataSource = new List<Musteri> { yeniMusteri };
+
         }
 
-        private void dgvMusteriler_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void MusteriEklemeForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            //if (!closeButtonClicked)
+            //{
+            //    DialogResult result = MessageBox.Show("Müşterileri kaydetmeden çıkıyorsunuz.Emin misiniz?", "Uyarı", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            //    if (result == DialogResult.Cancel)
+            //    {
+            //        e.Cancel = true;
+            //    }
+
+            //}
+
+        }
+
+        private void dgvMusteriler_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Musteri secili = (Musteri)dgvMusteriler.SelectedRows[0].DataBoundItem;
-            secili.Ad = txtAd.Text;
-            secili.Soyad = txtSoyad.Text;
-            secili.Telefon = txtCepNo.Text;
-            secili.Sehir = (Sehir)cboSehirler.SelectedItem;
-            
-            
+            txtAd.Text = secili.Ad;
+            txtSoyad.Text = secili.Soyad;
+            txtCepNo.Text = secili.Telefon;
+            cboSehirler.SelectedItem = secili.Sehir;
         }
     }
 }

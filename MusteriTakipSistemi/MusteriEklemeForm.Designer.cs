@@ -32,7 +32,6 @@
             btnKaydet = new Button();
             label7 = new Label();
             dtpTarih = new DateTimePicker();
-            btnKaydetVeCik = new Button();
             cboSehirler = new ComboBox();
             txtCepNo = new TextBox();
             txtSoyad = new TextBox();
@@ -44,13 +43,6 @@
             cboUrunler = new ComboBox();
             label5 = new Label();
             btnSil = new Button();
-            dgvMusteriler = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
             btnGuncelle = new Button();
             label6 = new Label();
             groupBox2 = new GroupBox();
@@ -58,9 +50,10 @@
             label8 = new Label();
             cboMusteriler = new ComboBox();
             btnEkle = new Button();
+            dgvMusteriler = new DataGridView();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvMusteriler).BeginInit();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMusteriler).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -69,7 +62,6 @@
             groupBox1.Controls.Add(btnKaydet);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(dtpTarih);
-            groupBox1.Controls.Add(btnKaydetVeCik);
             groupBox1.Controls.Add(cboSehirler);
             groupBox1.Controls.Add(txtCepNo);
             groupBox1.Controls.Add(txtSoyad);
@@ -111,17 +103,6 @@
             dtpTarih.Name = "dtpTarih";
             dtpTarih.Size = new Size(256, 27);
             dtpTarih.TabIndex = 14;
-            // 
-            // btnKaydetVeCik
-            // 
-            btnKaydetVeCik.BackColor = Color.Gray;
-            btnKaydetVeCik.Location = new Point(16, 425);
-            btnKaydetVeCik.Name = "btnKaydetVeCik";
-            btnKaydetVeCik.Size = new Size(136, 36);
-            btnKaydetVeCik.TabIndex = 13;
-            btnKaydetVeCik.Text = "KAYDET VE ÇIK";
-            btnKaydetVeCik.UseVisualStyleBackColor = false;
-            btnKaydetVeCik.Click += btnKaydetVeCik_Click;
             // 
             // cboSehirler
             // 
@@ -226,76 +207,6 @@
             btnSil.Visible = false;
             btnSil.Click += btnSil_Click;
             // 
-            // dgvMusteriler
-            // 
-            dgvMusteriler.AllowUserToAddRows = false;
-            dgvMusteriler.AllowUserToDeleteRows = false;
-            dgvMusteriler.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgvMusteriler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvMusteriler.BackgroundColor = Color.White;
-            dgvMusteriler.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMusteriler.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column6, Column5 });
-            dgvMusteriler.GridColor = Color.Silver;
-            dgvMusteriler.Location = new Point(707, 89);
-            dgvMusteriler.MultiSelect = false;
-            dgvMusteriler.Name = "dgvMusteriler";
-            dgvMusteriler.ReadOnly = true;
-            dgvMusteriler.RowHeadersVisible = false;
-            dgvMusteriler.RowHeadersWidth = 51;
-            dgvMusteriler.RowTemplate.Height = 29;
-            dgvMusteriler.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMusteriler.Size = new Size(388, 428);
-            dgvMusteriler.TabIndex = 8;
-            dgvMusteriler.CellContentClick += dgvMusteriler_CellContentClick;
-            // 
-            // Column1
-            // 
-            Column1.DataPropertyName = "Ad";
-            Column1.HeaderText = "Ad";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.DataPropertyName = "Soyad";
-            Column2.HeaderText = "Soyad";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            Column3.DataPropertyName = "Sehir";
-            Column3.HeaderText = "Şehir";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            Column4.DataPropertyName = "Telefon";
-            Column4.HeaderText = "Telefon No";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            Column6.DataPropertyName = "SatinAlmaTarihi";
-            Column6.HeaderText = "Tarih";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            Column5.DataPropertyName = "Urun.Ad";
-            Column5.HeaderText = "Satın Alınan Ürün";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            // 
             // btnGuncelle
             // 
             btnGuncelle.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -355,6 +266,7 @@
             // cboMusteriler
             // 
             cboMusteriler.BackColor = SystemColors.AppWorkspace;
+            cboMusteriler.DropDownStyle = ComboBoxStyle.DropDownList;
             cboMusteriler.FormattingEnabled = true;
             cboMusteriler.Location = new Point(16, 140);
             cboMusteriler.Name = "cboMusteriler";
@@ -372,6 +284,27 @@
             btnEkle.UseVisualStyleBackColor = false;
             btnEkle.Click += btnEkle_Click;
             // 
+            // dgvMusteriler
+            // 
+            dgvMusteriler.AllowUserToAddRows = false;
+            dgvMusteriler.AllowUserToDeleteRows = false;
+            dgvMusteriler.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dgvMusteriler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvMusteriler.BackgroundColor = Color.White;
+            dgvMusteriler.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMusteriler.GridColor = Color.Silver;
+            dgvMusteriler.Location = new Point(707, 89);
+            dgvMusteriler.MultiSelect = false;
+            dgvMusteriler.Name = "dgvMusteriler";
+            dgvMusteriler.ReadOnly = true;
+            dgvMusteriler.RowHeadersVisible = false;
+            dgvMusteriler.RowHeadersWidth = 51;
+            dgvMusteriler.RowTemplate.Height = 29;
+            dgvMusteriler.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMusteriler.Size = new Size(388, 428);
+            dgvMusteriler.TabIndex = 8;
+            dgvMusteriler.CellClick += dgvMusteriler_CellClick;
+            // 
             // MusteriEklemeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -386,11 +319,12 @@
             Controls.Add(groupBox1);
             Name = "MusteriEklemeForm";
             Text = "Müşteri Ekleme";
+            FormClosing += MusteriEklemeForm_FormClosing;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvMusteriler).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMusteriler).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -409,23 +343,16 @@
         private Label label1;
         private Label label4;
         private Label label2;
-        private DataGridView dgvMusteriler;
         private Button btnGuncelle;
         private Label label6;
         private ComboBox cboSehirler;
-        private Button btnKaydetVeCik;
         private Label label7;
         private DateTimePicker dtpTarih;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column5;
         private GroupBox groupBox2;
         private Label label9;
         private Label label8;
         private ComboBox cboMusteriler;
         private Button btnEkle;
+        private DataGridView dgvMusteriler;
     }
 }

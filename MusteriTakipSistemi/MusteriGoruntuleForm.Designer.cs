@@ -38,12 +38,6 @@
             label7 = new Label();
             label1 = new Label();
             dgvMusteriler = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMusteriler).BeginInit();
             SuspendLayout();
@@ -148,7 +142,6 @@
             dgvMusteriler.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMusteriler.BackgroundColor = Color.White;
             dgvMusteriler.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMusteriler.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column6, Column5 });
             dgvMusteriler.GridColor = Color.Silver;
             dgvMusteriler.Location = new Point(30, 225);
             dgvMusteriler.MultiSelect = false;
@@ -160,54 +153,6 @@
             dgvMusteriler.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMusteriler.Size = new Size(666, 474);
             dgvMusteriler.TabIndex = 14;
-            // 
-            // Column1
-            // 
-            Column1.DataPropertyName = "Ad";
-            Column1.HeaderText = "Ad";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.DataPropertyName = "Soyad";
-            Column2.HeaderText = "Soyad";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            Column3.DataPropertyName = "Sehir";
-            Column3.HeaderText = "Şehir";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            Column4.DataPropertyName = "TelefonNo";
-            Column4.HeaderText = "Telefon No";
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            Column6.DataPropertyName = "SatinAlmaTarihi";
-            Column6.HeaderText = "Tarih";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            Column5.DataPropertyName = "Urun";
-            Column5.HeaderText = "Satın Alınan Ürün";
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
             // 
             // MusteriGoruntuleForm
             // 
@@ -239,11 +184,5 @@
         private Label label7;
         private Label label1;
         private DataGridView dgvMusteriler;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column5;
     }
 }
